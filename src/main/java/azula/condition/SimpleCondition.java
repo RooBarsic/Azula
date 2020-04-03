@@ -11,9 +11,9 @@ import java.util.Objects;
  * Modification Date : 02.04.2020
  */
 public class SimpleCondition extends Condition {
-    private String leftLiteral;
-    private RelationalOperator operator;
-    private String rightLiteral;
+    private final String leftLiteral;
+    private final RelationalOperator operator;
+    private final String rightLiteral;
 
     SimpleCondition(@NotNull final String leftLiteral, @NotNull final RelationalOperator operator, @NotNull final String rightLiteral){
         this.leftLiteral = leftLiteral;
@@ -23,13 +23,15 @@ public class SimpleCondition extends Condition {
 
     @Nullable
     public static Condition parseCondition(@NotNull final String conditionStr) {
-        RelationalOperator operator = findComparisonOperationType(conditionStr);
-        if(operator != null){
-            String[] buffer = conditionStr.split(operator.toSqlVue(), 2);
-            buffer[0] = buffer[0].trim();
-            buffer[1] = buffer[1].trim();
-            if((buffer.length == 2) && (checkLiteral(buffer[0])) && (checkLiteral(buffer[1]))){
-                return new SimpleCondition(buffer[0], operator, buffer[1]);
+        if(!conditionStr.equals("")) {
+            RelationalOperator operator = findComparisonOperationType(conditionStr);
+            if (operator != null) {
+                String[] buffer = conditionStr.split(operator.toSqlVue(), 2);
+                buffer[0] = buffer[0].trim();
+                buffer[1] = buffer[1].trim();
+                if ((buffer.length == 2) && (checkLiteral(buffer[0])) && (checkLiteral(buffer[1]))) {
+                    return new SimpleCondition(buffer[0], operator, buffer[1]);
+                }
             }
         }
         return null;
@@ -52,15 +54,15 @@ public class SimpleCondition extends Condition {
     }
 
     public String toMongoVue() {
-        return leftLiteral + ": {" +
+        return "{" + leftLiteral + ": {" +
                 "$" + operator.toMongoVue() +
-                ": " + rightLiteral + "}" ;
+                ": " + rightLiteral + "}}" ;
     }
 
     public String toSqlVue() {
-        return leftLiteral + " "
+        return "(" + leftLiteral + " "
                 + operator.toSqlVue() + " "
-                + rightLiteral;
+                + rightLiteral + ")";
     }
 
     @Override
@@ -77,9 +79,9 @@ public class SimpleCondition extends Condition {
 
     @Override
     public int hashCode() {
-        int result = leftLiteral != null ? leftLiteral.hashCode() : 0;
-        result = 31 * result + (operator != null ? operator.hashCode() : 0);
-        result = 31 * result + (rightLiteral != null ? rightLiteral.hashCode() : 0);
+        int result = leftLiteral.hashCode();
+        result = 31 * result + operator.hashCode();
+        result = 31 * result + rightLiteral.hashCode();
         return result;
     }
 }

@@ -13,6 +13,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+/**
+ * Класс для тестирирования простых условных выражений
+ * Author : Farrukh Karimov
+ * Modification Date : 02.04.2020
+ */
 @RunWith(DataProviderRunner.class)
 public class SimpleConditionTest {
     private final String leftLiteral = "age";
@@ -40,7 +45,7 @@ public class SimpleConditionTest {
     @Test
     @UseDataProvider("provider")
     public void canConvertToMongoVue(final RelationalOperator operator){
-        final String mongoConditionVue = leftLiteral + ": {$" + operator.toMongoVue() + ": " + rightLiteral + "}";
+        final String mongoConditionVue = "{" + leftLiteral + ": {$" + operator.toMongoVue() + ": " + rightLiteral + "}}";
         final Condition condition = new SimpleCondition(leftLiteral, operator, rightLiteral);
         assertEquals(mongoConditionVue, condition.toMongoVue());
     }
