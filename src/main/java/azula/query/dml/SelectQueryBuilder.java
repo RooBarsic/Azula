@@ -1,7 +1,6 @@
 package azula.query.dml;
 
 import azula.condition.Condition;
-import azula.query.Query;
 import azula.query.QueryBuilder;
 
 import java.util.ArrayList;
@@ -82,7 +81,7 @@ public class SelectQueryBuilder implements QueryBuilder {
      * @return - возвращает null если не передано название таблицы или колонки
      */
     @Override
-    public Query perform() {
+    public SelectQuery perform() {
         if((from == null) || (columns.size() == 0)) {
             return null;
         }
