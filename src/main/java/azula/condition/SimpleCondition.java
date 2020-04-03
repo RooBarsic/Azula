@@ -15,7 +15,7 @@ public class SimpleCondition extends Condition {
     private final RelationalOperator operator;
     private final String rightLiteral;
 
-    SimpleCondition(@NotNull final String leftLiteral, @NotNull final RelationalOperator operator, @NotNull final String rightLiteral){
+    public SimpleCondition(@NotNull final String leftLiteral, @NotNull final RelationalOperator operator, @NotNull final String rightLiteral){
         this.leftLiteral = leftLiteral;
         this.operator = operator;
         this.rightLiteral = rightLiteral;

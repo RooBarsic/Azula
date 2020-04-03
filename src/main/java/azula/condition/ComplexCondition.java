@@ -17,7 +17,7 @@ public class ComplexCondition extends Condition {
     private final BooleanOperator booleanOperator;
     private final List<Condition> conditionList;
 
-    ComplexCondition(@NotNull final BooleanOperator booleanOperator, @NotNull final Condition... conditions){
+    public ComplexCondition(@NotNull final BooleanOperator booleanOperator, @NotNull final Condition... conditions){
         this.booleanOperator = booleanOperator;
         conditionList = new ArrayList<>();
         Collections.addAll(conditionList, conditions);
@@ -59,7 +59,7 @@ public class ComplexCondition extends Condition {
         mongoVueBuilder
                 .append("$")
                 .append(booleanOperator.toMongoVue())
-                .append(" : [");
+                .append(": [");
         for(final Condition condition : conditionList){
             mongoVueBuilder.append(condition.toMongoVue());
             mongoVueBuilder.append(", ");
