@@ -52,7 +52,7 @@ public class ComplexConditionTest {
 
     @Test
     public void canConvertToMongoCondition(){
-        final String mongoConditionVue = "{$and : [{a: {$gt: 5}}, {$or : [{b: {$lt: 10}}, {c: {$eq: 45}}, {d: {$ne: 16}}]}, {e: {$lt: 19}}]}";
+        final String mongoConditionVue = "{$and: [{a: {$gt: 5}}, {$or: [{b: {$lt: 10}}, {c: {$eq: 45}}, {d: {$ne: 16}}]}, {e: {$lt: 19}}]}";
 
         final Condition condition = new ComplexCondition(
                 BooleanOperator.AND,

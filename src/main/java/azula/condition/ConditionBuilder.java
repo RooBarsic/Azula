@@ -15,7 +15,7 @@ public class ConditionBuilder {
     private BooleanOperator booleanOperator = null;
     private List<Condition> conditionsList;
 
-    ConditionBuilder(){
+    public ConditionBuilder(){
         conditionsList = new ArrayList<>();
     }
 
