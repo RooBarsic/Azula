@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Класс SQL запросов типа SELECT
@@ -103,5 +104,32 @@ public class SelectQuery implements Query {
         }
 
         return stringBuilder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SelectQuery)) return false;
+
+        SelectQuery that = (SelectQuery) o;
+
+        if (DML_TYPE != that.DML_TYPE) return false;
+        if (!columns.equals(that.columns)) return false;
+        if (!from.equals(that.from)) return false;
+        if (!Objects.equals(whereCondition, that.whereCondition))
+            return false;
+        if (!Objects.equals(limit, that.limit)) return false;
+        return Objects.equals(skip, that.skip);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = DML_TYPE.hashCode();
+        result = 31 * result + columns.hashCode();
+        result = 31 * result + from.hashCode();
+        result = 31 * result + (whereCondition != null ? whereCondition.hashCode() : 0);
+        result = 31 * result + (limit != null ? limit.hashCode() : 0);
+        result = 31 * result + (skip != null ? skip.hashCode() : 0);
+        return result;
     }
 }
