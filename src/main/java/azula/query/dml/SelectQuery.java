@@ -16,7 +16,6 @@ import java.util.Objects;
  * Modification Date : 04.04.2020
  */
 public class SelectQuery implements Query {
-    private final DmlTypes DML_TYPE = DmlTypes.SELECT;
     @NotNull
     private final List<String> columns;
     @NotNull
@@ -113,7 +112,6 @@ public class SelectQuery implements Query {
 
         SelectQuery that = (SelectQuery) o;
 
-        if (DML_TYPE != that.DML_TYPE) return false;
         if (!columns.equals(that.columns)) return false;
         if (!from.equals(that.from)) return false;
         if (!Objects.equals(whereCondition, that.whereCondition))
@@ -124,8 +122,7 @@ public class SelectQuery implements Query {
 
     @Override
     public int hashCode() {
-        int result = DML_TYPE.hashCode();
-        result = 31 * result + columns.hashCode();
+        int result = columns.hashCode();
         result = 31 * result + from.hashCode();
         result = 31 * result + (whereCondition != null ? whereCondition.hashCode() : 0);
         result = 31 * result + (limit != null ? limit.hashCode() : 0);
