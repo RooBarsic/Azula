@@ -24,7 +24,7 @@ public abstract class Condition implements VueAble {
 
     static boolean checkLetter(final char e){
         return (('a' <= e) && (e <= 'z')) || (('A' <= e) && (e <= 'Z'))
-                || (('0' <= e) && (e <= '9')) || (e == '_');
+                || (('0' <= e) && (e <= '9')) || (e == '_') || (e == '.') || (e == '"');
     }
 
     @Nullable
@@ -87,6 +87,8 @@ public abstract class Condition implements VueAble {
                     stringBuilder.append(c);
                 }
             }
+            System.out.println(stringBuilder);
+            System.out.println(parsedConditions.toString());
             final Condition finalCondition = parsedConditions.getFirst();
             if(finalCondition instanceof ComplexCondition){
                 final ComplexCondition finalComplexCondition = (ComplexCondition) finalCondition;

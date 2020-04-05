@@ -127,11 +127,14 @@ public class SqlSelectQueryParser {
      * @return - Возвращает список распарсеных названий колонок
      */
     private String[] parseColumns(final String columnsStr){
+        if(columnsStr.trim().equals("*")){
+            return new String[]{"*"};
+        }
         List<String> columnsList = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
         for(char e : columnsStr.toCharArray()){
             if((('a' <= e) && (e <= 'z')) || (('A' <= e) && (e <= 'Z')) ||
-                    (('0' <= e) && (e <= '9')) || (e == '_') || (e == '*')){
+                    (('0' <= e) && (e <= '9')) || (e == '_') || (e == '.')){
                 stringBuilder.append(e);
             } else if(e == ','){
                 if(stringBuilder.length() > 0){
