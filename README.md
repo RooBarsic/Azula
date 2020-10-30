@@ -9,7 +9,7 @@
 
 # Supported query types
 
-- SELECT
+**SELECT**
 
 Supported options :
 ```sh
