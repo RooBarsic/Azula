@@ -1,4 +1,4 @@
-# Azula - SQL to MongoDB shell converter
+# Azula - SQL to MongoDB command line commands converter
 
 **At the input, the converter receives an SQL query and issues the corresponding MongoDB query.**
 
