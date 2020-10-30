@@ -7,11 +7,14 @@
 *Sample output: db.sales.find({}).limit(10)*
 
 
-**Supported query types**
+# Supported query types
+
 *SELECT*
-    Supported options
-    a. WHERE. supported complex conditions like ((a > 5) AND ((b < 10) OR (c = 45) OR (d <> 16)) AND (e < 19))
-    b. SKIP
-    c. LIMIT
+
+Supported options
+
+- WHERE. supported complex conditions like ((a > 5) AND ((b < 10) OR (c = 45) OR (d <> 16)) AND (e < 19))
+- SKIP
+- LIMIT
     
 
